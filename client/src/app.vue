@@ -1,31 +1,32 @@
 <template>
     <div class="app">
         <div class="bg" ref="bg"></div>
-        <LoginCard></LoginCard>
+        <transition name="fade" mode="out-in">
+            <LoginCard v-if="!isLogin"></LoginCard>
+            <MainView v-else></MainView>
+        </transition>
     </div>
 </template>
 
 <script>
-import axios from 'axios'
 import LoginCard from '@/containers/login-card'
+import MainView from '@/containers/main-view'
 
 export default {
     components: {
-        LoginCard
+        LoginCard,
+        MainView
     },
-    data() {
-        return {
-            isLogin: false
+    computed: {
+        isLogin() {
+            return this.$store.isLogin
         }
     },
-    methods: {
-        login() {
-            // axios.post()
-        }
-    },
+    methods: {},
     created() {
-        axios.get('https://ouyancey.cn/api/bing_daily_pic_url')
+        this.$store.dispatch('获取必应每日美图')
             .then((res) => {
+                this.$store.commit('获取必应每日美图成功')
                 this.$refs.bg.style.backgroundImage = `url(${res.data[0].url}`
                 this.$refs.bg.style.opacity = 0.8
             })

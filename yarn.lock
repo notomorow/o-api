@@ -4953,6 +4953,10 @@ vue@^2.2.2:
   version "2.3.0"
   resolved "http://registry.npm.taobao.org/vue/download/vue-2.3.0.tgz#bc44db0488c5245c788304c7683efe7b4c862d82"
 
+vuex@^2.3.1:
+  version "2.3.1"
+  resolved "http://registry.npm.taobao.org/vuex/download/vuex-2.3.1.tgz#cde8e997c1f9957719bc7dea154f9aa691d981a6"
+
 vxx@^1.2.0:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/vxx/download/vxx-1.2.0.tgz#7ebc30f87fe246a68accdae2acc42b1c2078111f"
