@@ -1,5 +1,5 @@
 <template>
-    <Card class="login-card">
+    <Card class="login-card" @keyup.enter.native="login">
         <h2>IAS-APIs</h2>
         <Input type="text" placeholder="姓名" v-model="user.username"></Input>
         <Input type="password" placeholder="密码" v-model="user.password"></Input>
@@ -35,12 +35,10 @@ export default {
                         this.isRegisterLoading = false
                         if (res.data.ok) {
                             this.isRegister = false
-                            console.log(2)
                         }
                     })
             } else {
                 this.isRegister = true
-                console.log(1)
             }
         }
     }

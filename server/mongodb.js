@@ -16,4 +16,15 @@ mongoose.Users = mongoose.model('Users', {
     createTime: Date
 })
 
+mongoose.Apis = mongoose.model('Apis', {
+    path: String,
+    method: String,
+    project: String,
+    createTime: Date,
+    description: String,
+    groupName: String,
+    params: Array,
+    results: Array
+})
+
 module.exports = mongoose

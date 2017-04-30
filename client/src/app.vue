@@ -3,7 +3,7 @@
         <div class="bg" ref="bg"></div>
         <transition name="fade" mode="out-in">
             <LoginCard v-if="!isLogin"></LoginCard>
-            <MainView v-else></MainView>
+            <MainView v-if="isLogin"></MainView>
         </transition>
     </div>
 </template>
@@ -19,7 +19,7 @@ export default {
     },
     computed: {
         isLogin() {
-            return this.$store.isLogin
+            return this.$store.state.isLogin
         }
     },
     methods: {},
@@ -30,6 +30,10 @@ export default {
                 this.$refs.bg.style.backgroundImage = `url(${res.data[0].url}`
                 this.$refs.bg.style.opacity = 0.8
             })
+        this.$store.dispatch('登录', {
+            username: '111',
+            password: '123456'
+        })
     }
 }
 </script>
