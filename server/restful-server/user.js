@@ -9,7 +9,8 @@ function login(req, res, next) {
     Users.find(content)
         .then((docs) => {
             res.send(200, {
-                success: docs.length !== 0
+                success: docs.length !== 0,
+                user: docs[0]
             })
         })
 }

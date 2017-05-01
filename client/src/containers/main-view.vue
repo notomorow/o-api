@@ -1,19 +1,19 @@
 <template>
 <main>
     <ApisTable></ApisTable>
-    <ApiInfoView></ApiInfoView>
+    <ApiInfoCard></ApiInfoCard>
 </main>
 </template>
 
 <script>
 import ApisTable from './apis-table'
-import ApiInfoView from './api-info-view'
+import ApiInfoCard from './api-info-card'
 
 export default {
     name: 'login-card',
     components: {
         ApisTable,
-        ApiInfoView
+        ApiInfoCard
     },
     data() {
         return {

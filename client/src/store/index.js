@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createLogger from 'vuex/src/plugins/logger'
-import http from '@/helper/http'
+import { http, socket } from '@/helper/server'
 
 Vue.use(Vuex)
 
@@ -9,7 +9,8 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
     state: {
-        isLogin: false
+        isLogin: false,
+        user: {}
     },
     actions: {
         获取必应每日美图() {
@@ -19,7 +20,8 @@ export default new Vuex.Store({
             http.post('/login', user)
                 .then((res) => {
                     if (res.data.success) {
-                        commit('登录成功')
+                        commit('登录成功', res.data.user)
+                        socket.emit('join', res.data.user)
                     }
                 })
         },
@@ -29,8 +31,9 @@ export default new Vuex.Store({
     },
     mutations: {
         获取必应每日美图成功() {},
-        登录成功(state) {
+        登录成功(state, user) {
             state.isLogin = true
+            state.user = user
         },
         注册成功() {}
     },
