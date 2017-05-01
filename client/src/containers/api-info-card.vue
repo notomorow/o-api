@@ -1,16 +1,22 @@
 <template>
-    <div class="wrap">
-        <Tabs type="card">
-            <Tab-pane label="API">API内容</Tab-pane>
-            <Tab-pane label="测试用例">测试用例</Tab-pane>
-        </Tabs>
+<div class="wrap">
+    <div>
+        <label>名称：</label>
+        <Input style="width:300px"></Input>
     </div>
+    <div>
+        <label>请求：</label>
+        <Input style="width:300px"></Input>
+    </div>
+</div>
 </template>
-
 <script>
-export default {
-
-}
+    export default {
+        data() {
+            return {}
+        },
+        methods: {}
+    }
 </script>
 
 <style>
