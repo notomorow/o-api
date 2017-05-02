@@ -1,30 +1,59 @@
 <template>
-<div class="wrap">
-    <div>
-        <label>名称：</label>
-        <Input style="width:300px"></Input>
+    <div class="wrap">
+        <h2>
+            <Button type="primary" @click="returnHome" icon="home" style="float: right">首页</Button>
+            新增API
+        </h2>
+        <Form :label-width="60">
+            <Form-item label="名称：">
+                <Input v-model="APIForm.name" placeholder="请输入"></Input>
+            </Form-item>
+            <Form-item label="路径：">
+                <Input v-model="APIForm.path" placeholder="请输入API相对路径，例如: /api/bonds">
+                    <Select v-model="APIForm.method" slot="prepend" style="width: 80px;">
+                        <Option value="GET">GET</Option>
+                        <Option value="POST">POST</Option>
+                    </Select>
+                </Input>
+            </Form-item>
+            <Form-item>
+                <Button type="primary" @click="next">下一步</Button>
+            </Form-item>
+        </Form>
     </div>
-    <div>
-        <label>请求：</label>
-        <Input style="width:300px"></Input>
-    </div>
-</div>
 </template>
+
 <script>
-    export default {
-        data() {
-            return {}
+export default {
+    data() {
+        return {
+            step: 0,
+            APIForm: {
+                name: '',
+                path: '',
+                method: 'GET'
+            }
+        }
+    },
+    methods: {
+        returnHome() {
+            this.$store.commit('切换页面', 'home')
         },
-        methods: {}
+        next() {
+            // this.step++
+            this.$store.commit('新增API', this.APIForm)
+        }
     }
+}
 </script>
 
-<style>
+<style scoped>
 .wrap {
-    height: 100%;
-    width: 70%;
-    padding: 10px;
-    border: 1px solid #d7dde4;
-    background: #f5f7f9;
+    font-size: 14px !important;
+}
+h2 {
+    padding: 10px 0;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
 }
 </style>

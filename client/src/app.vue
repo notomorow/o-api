@@ -3,7 +3,10 @@
         <div class="bg" ref="bg"></div>
         <transition name="fade" mode="out-in">
             <LoginCard v-if="!isLogin"></LoginCard>
-            <MainView v-if="isLogin"></MainView>
+            <main v-if="isLogin">
+                <ApisTable></ApisTable>
+                <MainView></MainView>
+            </main>
         </transition>
     </div>
 </template>
@@ -11,11 +14,13 @@
 <script>
 import LoginCard from '@/containers/login-card'
 import MainView from '@/containers/main-view'
+import ApisTable from '@/containers/apis-table'
 
 export default {
     components: {
         LoginCard,
-        MainView
+        MainView,
+        ApisTable
     },
     computed: {
         isLogin() {
@@ -30,10 +35,10 @@ export default {
                 this.$refs.bg.style.backgroundImage = `url(${res.data[0].url}`
                 this.$refs.bg.style.opacity = 0.9
             })
-        this.$store.dispatch('登录', {
-            username: '111',
-            password: '123456'
-        })
+        // this.$store.dispatch('登录', {
+        //     username: '111',
+        //     password: '123456'
+        // })
     }
 }
 </script>
@@ -61,5 +66,11 @@ body,
     background-position: center;
     transition: 3s;
     opacity: 0;
+}
+main {
+    flex: 1;
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
 }
 </style>

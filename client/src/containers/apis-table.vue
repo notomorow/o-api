@@ -1,39 +1,33 @@
 <template>
 <div class="apis-table">
-    <Input v-model="apiFilterString" placeholder="搜索"></Input>
+    <Input placeholder="搜索"></Input>
     <Button class="add" type="primary" icon="plus-round" long @click="createAPI">添加API</Button>
-    <Tree :data="baseData"></Tree>
-</div> 
+    <ul>
+        <li v-for="APIId in APIsList" @click="showAPIInfo(APIId)">
+            <span>{{ APIs[APIId].method }}</span>
+            <span>{{ APIs[APIId].path }}</span>
+        </li>
+    </ul>
+</div>
 </template>
 
 <script>
 export default {
-    data() {
-        return {
-            baseData: [{
-                title: 'parent 1',
-                children: [{
-                    title: 'parent 1-0',
-                    children: [{
-                        title: 'leaf',
-                        disableCheckbox: true
-                    }, {
-                        title: 'leaf'
-                    }]
-                }, {
-                    title: 'parent 1-1',
-                    expand: true,
-                    checked: true,
-                    children: [{
-                        title: '<span style="color: red">leaf</span>'
-                    }]
-                }]
-            }]
+    computed: {
+        APIsList() {
+            return Object.keys(this.$store.state.APIs)
+        },
+        APIs() {
+            return this.$store.state.APIs
         }
     },
     methods: {
         createAPI() {
-            this.$store.dispatch('增加API')
+            this.$store.commit('切换页面', 'api')
+        },
+        showAPIInfo(APIId) {
+            this.$store.commit('切换页面', 'api')
+            this.$store.commit('选择API', APIId)
         }
     }
 }

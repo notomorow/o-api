@@ -5,8 +5,8 @@
   "author": "Ou Yancey <ou.yancey@gmail.com>",
   "scripts": {
     "dev-web": "cd ./client && node build/dev-server.js",
+    "dev-ser": "nodemon server/index.js --watch server",
     "build": "cd ./client && node build/build.js",
-    "dev-ser": "nodemon server/index.js",
     "lint": "eslint --ext .js,.vue client/src --fix"
   },
   "dependencies": {

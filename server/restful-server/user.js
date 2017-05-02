@@ -35,7 +35,13 @@ function register(req, res, next) {
                 })
             }
         })
+}
 
+function update(req, res, next) {
+    const content = {
+        urlProtocol: req.params.urlProtocol,
+        urlHostname: req.params.urlHostname
+    }
 }
 
 module.exports = {

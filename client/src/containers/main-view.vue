@@ -1,41 +1,33 @@
 <template>
-<main>
-    <ApisTable></ApisTable>
-    <ApiInfoCard></ApiInfoCard>
-</main>
+<div class="main-view">
+    <home v-if="route === 'home'"></home>
+    <api-info-card v-if="route === 'api'"></api-info-card>
+</div>
 </template>
 
 <script>
-import ApisTable from './apis-table'
-import ApiInfoCard from './api-info-card'
+import Home from '@/containers/home'
+import ApiInfoCard from '@/containers/api-info-card'
 
 export default {
-    name: 'login-card',
     components: {
-        ApisTable,
-        ApiInfoCard
+        ApiInfoCard,
+        Home
     },
-    data() {
-        return {
-            user: {
-                username: '',
-                password: ''
-            }
-        }
-    },
-    methods: {
-        login() {
-            this.$store.dispatch('登录', this.user)
+    computed: {
+        route() {
+            return this.$store.state.route
         }
     }
 }
 </script>
 
 <style scoped>
-main {
-    flex: 1;
-    margin: 20px;
-    display: flex;
-    justify-content: space-around;
+.main-view {
+    height: 100%;
+    width: 70%;
+    padding: 10px;
+    border: 1px solid #d7dde4;
+    background: #f5f7f9;
 }
 </style>

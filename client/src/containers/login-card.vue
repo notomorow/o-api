@@ -11,7 +11,6 @@
 
 <script>
 export default {
-    name: 'login-card',
     data() {
         return {
             isRegister: false,
